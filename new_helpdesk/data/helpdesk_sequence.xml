@@ -1,8 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo noupdate="1">
     <record id="seq_helpdesk_ticket" model="ir.sequence">
         <field name="name">Helpdesk Ticket</field>
         <field name="code">helpdesk.ticket</field>
-        <field name="prefix">HD</field>
+        <field name="prefix">TICK-</field>
+        <field name="number_next">1000</field>
+        <field name="number_increment">1</field>
         <field name="padding">5</field>
     </record>
 </odoo>
