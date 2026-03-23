@@ -1,38 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!-- Tag List View - Editable Table with Color Picker -->
     <record id="view_helpdesk_tag_list" model="ir.ui.view">
         <field name="name">helpdesk.tag.list</field>
         <field name="model">helpdesk.tag</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="name"/>
-                <field name="description"/>
-                <field name="count"/>
-            </tree>
+                <field name="color" widget="color_picker"/>
+            </list>
         </field>
     </record>
 
+    <!-- Tag Form View -->
     <record id="view_helpdesk_tag_form" model="ir.ui.view">
         <field name="name">helpdesk.tag.form</field>
         <field name="model">helpdesk.tag</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
                     <group>
-                        <field name="name"/>
-                        <field name="description"/>
+                        <field name="color" widget="color_picker" help="Choose a color for this tag"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
+    <!-- Tag Search View -->
     <record id="view_helpdesk_tag_search" model="ir.ui.view">
         <field name="name">helpdesk.tag.search</field>
         <field name="model">helpdesk.tag</field>
         <field name="arch" type="xml">
             <search>
                 <field name="name"/>
-                <field name="description"/>
             </search>
         </field>
     </record>
