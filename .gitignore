@@ -1,0 +1,6 @@
+# Ignore everything except new_helpdesk folder
+*
+!.github/
+!.gitignore
+!new_helpdesk/
+!/new_helpdesk/**
