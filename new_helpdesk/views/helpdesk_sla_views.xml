@@ -1,41 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="view_helpdesk_sla_tree" model="ir.ui.view">
-        <field name="name">helpdesk.sla.tree</field>
-        <field name="model">helpdesk.sla</field>
+    <!-- SLA List View - Editable Table -->
+    <record id="view_helpdesk_sla_list" model="ir.ui.view">
+        <field name="name">helpdesk.sla.policy.list</field>
+        <field name="model">helpdesk.sla.policy</field>
         <field name="arch" type="xml">
-            <tree>
+            <list editable="bottom">
+                <field name="name"/>
                 <field name="team_id"/>
-                <field name="priority"/>
-                <field name="stage_id"/>
-                <field name="response_time"/>
-            </tree>
+                <field name="priority" widget="selection"/>
+                <field name="reach_stage_id"/>
+                <field name="within" string="Response Time (Hours)"/>
+            </list>
         </field>
     </record>
 
+    <!-- SLA Form View -->
     <record id="view_helpdesk_sla_form" model="ir.ui.view">
-        <field name="name">helpdesk.sla.form</field>
-        <field name="model">helpdesk.sla</field>
+        <field name="name">helpdesk.sla.policy.form</field>
+        <field name="model">helpdesk.sla.policy</field>
         <field name="arch" type="xml">
             <form>
-                <group>
-                    <field name="team_id"/>
-                    <field name="priority"/>
-                    <field name="stage_id"/>
-                    <field name="response_time"/>
-                </group>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="team_id"/>
+                            <field name="priority"/>
+                        </group>
+                        <group>
+                            <field name="reach_stage_id" help="The stage this SLA applies to"/>
+                            <field name="within" help="Response time in hours to reach the specified stage"/>
+                        </group>
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
 
+    <!-- SLA Search View -->
     <record id="view_helpdesk_sla_search" model="ir.ui.view">
-        <field name="name">helpdesk.sla.search</field>
-        <field name="model">helpdesk.sla</field>
+        <field name="name">helpdesk.sla.policy.search</field>
+        <field name="model">helpdesk.sla.policy</field>
         <field name="arch" type="xml">
             <search>
+                <field name="name"/>
                 <field name="team_id"/>
                 <field name="priority"/>
-                <field name="stage_id"/>
-                <field name="response_time"/>
+                <group expand="0" string="Group By">
+                    <filter string="Team" context="{'group_by': 'team_id'}"/>
+                    <filter string="Priority" context="{'group_by': 'priority'}"/>
+                </group>
             </search>
         </field>
     </record>
