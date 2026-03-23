@@ -1,0 +1,42 @@
+<odoo>
+    <record id="view_helpdesk_team_kanban" model="ir.ui.view">
+        <field name="name">helpdesk.team.kanban</field>
+        <field name="model">helpdesk.team</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="name"/><field name="email_alias"/><field name="open_count"/><field name="unassigned_count"/><field name="urgent_count"/><field name="waiting_count"/><field name="overdue_count"/><field name="closed_count"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_kanban_record">
+                            <div class="o_kanban_record_top mb-2"><strong><field name="name"/></strong></div>
+                            <div class="mb-2 text-info"><field name="email_alias"/></div>
+                            <div class="mb-2 d-flex justify-content-between align-items-center">
+                                <button type="object" name="action_view_tickets" class="btn btn-primary btn-sm">Tickets</button>
+                                <span>Tickets Closed <field name="closed_count"/></span>
+                            </div>
+                            <div class="mt-3">
+                                <div>Open: <field name="open_count"/></div>
+                                <div>Unassigned: <field name="unassigned_count"/></div>
+                                <div>Urgent: <field name="urgent_count"/></div>
+                                <div>Waiting: <field name="waiting_count"/></div>
+                                <div>Overdue: <field name="overdue_count"/></div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="view_helpdesk_team_list" model="ir.ui.view">
+        <field name="name">helpdesk.team.list</field>
+        <field name="model">helpdesk.team</field>
+        <field name="arch" type="xml"><list><field name="sequence" widget="handle"/><field name="name"/><field name="email_alias"/></list></field>
+    </record>
+    <record id="view_helpdesk_team_form" model="ir.ui.view">
+        <field name="name">helpdesk.team.form</field>
+        <field name="model">helpdesk.team</field>
+        <field name="arch" type="xml">
+            <form><sheet><group><group><field name="name"/><field name="email_alias"/><field name="active"/></group><group><field name="member_ids" widget="many2many_tags"/><field name="sequence"/><field name="color"/></group></group></sheet></form>
+        </field>
+    </record>
+</odoo>

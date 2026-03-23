@@ -1,0 +1,49 @@
+<odoo>
+    <record id="view_helpdesk_ticket_search" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.search</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="ticket_number"/><field name="name"/><field name="partner_id"/><field name="user_id"/><field name="team_id"/>
+                <filter string="My Tickets" domain="[('user_id', '=', uid)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Stage" context="{'group_by': 'stage_id'}"/>
+                    <filter string="Team" context="{'group_by': 'team_id'}"/>
+                    <filter string="Assigned To" context="{'group_by': 'user_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="view_helpdesk_ticket_list" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.list</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml"><list><field name="ticket_number" string="Ticket #"/><field name="user_id" widget="many2one_avatar_user" string="Assigned to"/><field name="priority" widget="priority"/><field name="partner_id" string="Customer"/><field name="name" string="Subject"/><field name="activity_ids" widget="list_activity"/><field name="tag_ids" widget="many2many_tags"/><field name="stage_id"/></list></field>
+    </record>
+    <record id="view_helpdesk_ticket_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <form><header><field name="stage_id" widget="statusbar"/></header><sheet><div class="oe_title"><h1><field name="name"/></h1><div><field name="ticket_number" readonly="1"/></div></div><group><group><field name="team_id"/><field name="user_id" widget="many2one_avatar_user"/><field name="priority" widget="priority"/><field name="due_date"/><field name="tag_ids" widget="many2many_tags"/></group><group><field name="partner_id"/><field name="contact_name"/><field name="email"/><field name="phone"/><field name="closed_date" readonly="1"/></group></group><notebook><page string="Description"><field name="description" widget="html"/></page></notebook></sheet><chatter/></form>
+        </field>
+    </record>
+    <record id="view_helpdesk_ticket_kanban" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.kanban</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id">
+                <field name="name"/><field name="ticket_number"/><field name="partner_id"/><field name="user_id"/><field name="priority"/><field name="activity_ids"/>
+                <templates><t t-name="kanban-box"><div class="oe_kanban_global_click o_kanban_record"><div><strong><field name="name"/></strong></div><div class="text-muted"><field name="ticket_number"/></div><div><field name="partner_id"/></div><div class="mt-2"><field name="priority" widget="priority"/> <field name="activity_ids" widget="kanban_activity"/></div><div class="mt-2"><field name="user_id" widget="many2one_avatar_user"/></div></div></t></templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="view_helpdesk_ticket_activity" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.activity</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml"><activity string="Tickets"><field name="user_id"/><field name="activity_ids"/><templates><div><field name="name"/></div></templates></activity></field>
+    </record>
+    <record id="view_helpdesk_ticket_pivot" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.pivot</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml"><pivot string="Tickets Analysis"><field name="team_id" type="row"/><field name="stage_id" type="col"/><field name="id" type="measure"/></pivot></field>
+    </record>
+</odoo>

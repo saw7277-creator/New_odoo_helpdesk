@@ -1,0 +1,7 @@
+<odoo>
+    <record id="view_helpdesk_sla_list" model="ir.ui.view">
+        <field name="name">helpdesk.sla.list</field>
+        <field name="model">helpdesk.sla.policy</field>
+        <field name="arch" type="xml"><list editable="bottom"><field name="name"/><field name="team_id"/><field name="priority"/><field name="reach_stage_id"/><field name="within"/></list></field>
+    </record>
+</odoo>
