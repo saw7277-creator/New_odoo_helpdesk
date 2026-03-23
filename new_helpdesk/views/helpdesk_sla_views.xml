@@ -1,7 +1,42 @@
 <odoo>
-    <record id="view_helpdesk_sla_list" model="ir.ui.view">
-        <field name="name">helpdesk.sla.list</field>
-        <field name="model">helpdesk.sla.policy</field>
-        <field name="arch" type="xml"><list editable="bottom"><field name="name"/><field name="team_id"/><field name="priority"/><field name="reach_stage_id"/><field name="within"/></list></field>
+    <record id="view_helpdesk_sla_tree" model="ir.ui.view">
+        <field name="name">helpdesk.sla.tree</field>
+        <field name="model">helpdesk.sla</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="team_id"/>
+                <field name="priority"/>
+                <field name="stage_id"/>
+                <field name="response_time"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_helpdesk_sla_form" model="ir.ui.view">
+        <field name="name">helpdesk.sla.form</field>
+        <field name="model">helpdesk.sla</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="team_id"/>
+                    <field name="priority"/>
+                    <field name="stage_id"/>
+                    <field name="response_time"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_helpdesk_sla_search" model="ir.ui.view">
+        <field name="name">helpdesk.sla.search</field>
+        <field name="model">helpdesk.sla</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="team_id"/>
+                <field name="priority"/>
+                <field name="stage_id"/>
+                <field name="response_time"/>
+            </search>
+        </field>
     </record>
 </odoo>
